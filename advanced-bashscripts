@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# ========== GLOBAL VARIABLES ==========
+choice=""
+extra_input=""
+
+# ========== FUNCTION: Show Menu ==========
+show_menu() {
+    clear
+    echo "======================================"
+    echo "  Welcome to StreamSelect Hub "
+    echo "======================================"
+    echo
+    echo "Choose a streaming service:"
+    echo
+    echo "1) Netflix"
+    echo "2) Disney+"
+    echo "3) Amazon Prime"
+    echo "4) Hulu"
+    echo "5) Apple TV+"
+    echo "0) Exit"
+    echo
+}
+
+# ========== FUNCTION: Get User Choice ==========
+get_choice() {
+    read -p "Enter your choice [number or name]: " choice
+    choice=$(echo "$choice" | tr '[:upper:]' '[:lower:]')
+}
+
+# ========== FUNCTION: Process Choice ==========
+process_choice() {
+
+    case $choice in
+
+    1|"netflix")
+        local genre
+        echo "You selected Netflix."
+        read -p "What genre do you prefer? (action, drama, comedy): " genre
+        genre=$(echo "$genre" | tr '[:upper:]' '[:lower:]')
+        echo
+        echo "Great choice! Enjoy watching $genre movies on Netflix!"
+        ;;
+
+    2|"disney+")
+        local franchise
+        echo "You selected Disney+."
+        read -p "Do you prefer Marvel, Star Wars, or Pixar? " franchise
+        franchise=$(echo "$franchise" | tr '[:upper:]' '[:lower:]')
+        echo
+        echo "Awesome! Enjoy your $franchise content on Disney+!"
+        ;;
+
+    3|"amazon prime"|"prime")
+        echo "You selected Amazon Prime."
+        echo "Enjoy exclusive series and fast streaming!"
+        ;;
+
+    4|"hulu")
+        local plan
+        echo "You selected Hulu."
+        read -p "Choose a plan (basic, premium): " plan
+        plan=$(echo "$plan" | tr '[:upper:]' '[:lower:]')
+        echo
+        echo "Nice! Hulu $plan plan activated."
+        ;;
+
+    5|"apple tv+"|"apple")
+        echo "You selected Apple TV+."
+        echo "Enjoy high-quality original productions!"
+        ;;
+
+    0|"exit"|"quit")
+        echo
+        echo " Thanks for using StreamSelect Hub! Goodbye!"
+        exit 0
+        ;;
+
+    *)
+        echo
+        echo "❌ Invalid selection. Please choose from the listed options."
+        ;;
+
+    esac
+}
+
+# ========== MAIN PROGRAM LOOP ==========
+while true; do
+    show_menu
+    get_choice
+    echo
+    process_choice
+    echo
+    read -p "Press Enter to return to the main menu..."
+done

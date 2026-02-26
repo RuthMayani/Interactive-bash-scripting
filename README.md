@@ -1,1 +1,1 @@
-# interactive-bash-scripting
+# This repository contains all my bash scripts.
